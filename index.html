@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>We Studio Enterprise</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="app-shell">
+  <header class="topbar">
+    <div class="brand-mark"><span class="brand-dot"></span><span>We Studio</span><small>Enterprise</small></div>
+    <nav class="topnav" aria-label="ناوبری اصلی">
+      <div class="nav-group">
+        <span class="nav-group-label">فضای کاری</span>
+        <button type="button" class="nav-pill-btn active" data-view="dashboard"><span class="nav-icon" aria-hidden="true">⌂</span><span>داشبورد</span></button>
+        <button type="button" class="nav-pill-btn" data-view="start"><span class="nav-icon" aria-hidden="true">✦</span><span>شروع</span></button>
+        <button type="button" class="nav-pill-btn" data-view="brand-dna"><span class="nav-icon" aria-hidden="true">◇</span><span>هویت برند</span></button>
+      </div>
+      <div class="nav-group">
+        <span class="nav-group-label">تولید محتوا</span>
+        <button type="button" class="nav-pill-btn" data-view="instagram"><span class="nav-icon" aria-hidden="true">◎</span><span>اینستاگرام</span></button>
+        <button type="button" class="nav-pill-btn" data-view="youtube"><span class="nav-icon" aria-hidden="true">▶</span><span>یوتیوب</span></button>
+        <button type="button" class="nav-pill-btn" data-view="stories"><span class="nav-icon" aria-hidden="true">▤</span><span>استوری</span></button>
+      </div>
+      <div class="nav-group">
+        <span class="nav-group-label">مدیریت</span>
+        <button type="button" class="nav-pill-btn" data-view="media"><span class="nav-icon" aria-hidden="true">✓</span><span>بازبینی</span></button>
+        <button type="button" class="nav-pill-btn" data-view="history"><span class="nav-icon" aria-hidden="true">◷</span><span>تاریخچه</span></button>
+        <button type="button" class="nav-pill-btn" data-view="ai-gateway"><span class="nav-icon" aria-hidden="true">⚙</span><span>تنظیمات AI</span></button>
+      </div>
+    </nav>
+    <div class="sidebar-bottom">
+      <button id="btnOpenShortcuts" class="sidebar-help" type="button"><span class="sidebar-help-icon">?</span><span><b>راهنمای کامل</b><small>میانبرها و راهنما</small></span><span>‹</span></button>
+      <div class="sidebar-profile"><div class="avatar">WS</div><div><b>We Studio</b><small>Enterprise · 3.0.0</small></div></div>
+      <div class="sidebar-footer-actions">
+        <button id="btnThemeToggle" class="theme-toggle" type="button" aria-label="فعال کردن حالت دارک" title="حالت دارک"><span class="theme-icon" aria-hidden="true">☾</span><span class="theme-label">دارک</span></button>
+        <span id="apiStatusBadge" class="api-pill error"><i></i><span id="apiStatusText">کلید API ثبت نشده</span></span>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-wrap">
+    <div class="page-head">
+      <div><span class="eyebrow">سیستم مدیریت هویت و محتوا</span><h1 id="pageTitle">داشبورد</h1><p>مرکز فرمان هویت برند، تولید محتوا و خروجی‌های هوش مصنوعی.</p></div>
+      <div class="page-head-tools">
+        <div class="brand-switcher"><div class="brand-switcher-label"><span>برند فعال</span><b id="activeBrandBadge">انتخاب نشده</b></div><select id="activeBrandSelect" aria-label="انتخاب برند فعال"></select><button type="button" id="btnNewBrand" class="btn btn-dark btn-sm">برند جدید <span aria-hidden="true">+</span></button><button id="btnSectionGuide" class="btn btn-light btn-sm guide-trigger" type="button" aria-haspopup="dialog">راهنمای این بخش</button></div></div>
+    </div>
+
+    <section id="view-dashboard" class="view-panel active">
+      <div class="hero-bento">
+        <div class="welcome-card">
+          <div class="welcome-copy"><span class="eyebrow">مرکز فرمان برند</span><h2>خوش آمدی، <span id="healthBrandName">برند شما</span></h2><p>امروز وضعیت هویت برند، خروجی‌ها و زیرساخت تولید محتوا را یک‌جا ببین.</p><div class="hero-actions"><button type="button" id="btnStartAdvisor" class="btn btn-dark" data-jump="start">شروع ساخت هویت برند</button><button type="button" class="btn btn-light" data-jump="instagram">تولید محتوا</button></div></div>
+          <div class="hero-orbit"><div class="orbit-ring"><div class="orbit-core">WS</div></div><span class="orbit-tag">AI<br>READY</span></div>
+        </div>
+        <div class="metric-card yellow"><span>سلامت Brand DNA</span><strong id="healthPercent">0٪</strong><div class="metric-track"><i id="dashBarHealthPercent" style="width:0%"></i></div><small id="healthFieldCount">0 از 24 فیلد تکمیل شده</small></div>
+        <div class="metric-card dark"><span>خروجی‌های ذخیره‌شده</span><strong id="kpiHistoryCount">0</strong><small>در تاریخچه برند فعال</small><button type="button" class="mini-link" data-jump="history">مشاهده تاریخچه ↗</button></div>
+        <div class="metric-card cream"><span>نسخه‌های هویت برند</span><strong id="kpiVersionsCount">0</strong><small>Snapshot قابل بازگردانی</small><button type="button" class="mini-link" id="btnVersionHistory">مدیریت نسخه‌ها ↗</button></div>
+      </div>
+
+      <div class="section-head"><div><span class="eyebrow">هوش برند</span><h3>وضعیت فعلی برند</h3></div><span id="dashSaveState" class="save-state">✓ ذخیره شده</span></div>
+      <div class="dashboard-grid">
+        <div class="panel progress-panel"><div class="panel-title"><div><span class="panel-kicker">سلامت برند</span><h4>پروفایل هویت</h4></div><span id="dashArchetypePill" class="chip">The Creator</span></div><div class="big-gauge"><div class="gauge-circle"><div><strong id="gaugeCenterValue">0٪</strong><small>سلامت Brand DNA</small></div></div><div class="gauge-meta"><div><b>هویت برند</b><span>متمرکز و قابل استفاده در تمام موتورهای محتوا</span></div><div><b>Voice / Tone</b><span>تفکیک شخصیت ثابت از لحن موقعیتی</span></div></div></div><button type="button" class="btn btn-light btn-full" data-jump="brand-dna">باز کردن Brand DNA</button></div>
+        <div class="panel quick-panel"><div class="panel-title"><div><span class="panel-kicker">دسترسی سریع</span><h4>شروع سریع</h4></div><span class="soft-icon">✦</span></div><button type="button" class="quick-row" data-jump="instagram"><span class="quick-icon">◎</span><span><b>پست اینستاگرام</b><small>هوک، کپشن، CTA و پیام DM</small></span><span>←</span></button><button type="button" class="quick-row" data-jump="youtube"><span class="quick-icon">▶</span><span><b>توضیحات یوتیوب</b><small>ساختار، سئو، تایم‌استمپ و هشتگ</small></span><span>←</span></button><button type="button" class="quick-row" data-jump="stories"><span class="quick-icon">▤</span><span><b>معماری استوری</b><small>زنجیره اسلاید با هدف رفتاری</small></span><span>←</span></button><button type="button" class="quick-row" data-jump="media"><span class="quick-icon">✓</span><span><b>بازبینی انتشار</b><small>چک‌لیست کنترل کیفیت انسانی</small></span><span>←</span></button></div>
+      </div>
+      <section class="dashboard-focus" aria-label="ادامه کار">
+        <div class="dashboard-focus-copy">
+          <span class="panel-kicker">ادامه کار</span>
+          <h3>از همین‌جا ادامه بده</h3>
+          <p>Brand DNA را تکمیل کن تا موتورهای تولید محتوای AI خروجی دقیق‌تر و منسجم‌تری بسازند.</p>
+        </div>
+        <div class="dashboard-focus-meta"><span id="dashboardFocusHealth">۰٪ تکمیل</span><span>ذخیره خودکار فعال</span></div>
+        <div class="dashboard-focus-actions"><button type="button" class="btn btn-dark btn-sm" data-jump="brand-dna">تکمیل Brand DNA</button><button type="button" class="btn btn-light btn-sm" data-jump="instagram">تولید محتوا</button></div>
+      </section>
+      <div class="section-head"><div><span class="eyebrow">خروجی‌های اخیر</span><h3>آخرین خروجی‌ها</h3></div><button type="button" id="btnViewAllHistory" class="text-link">مشاهده همه ↗</button></div>
+      <div id="dashboardRecentGrid" class="recent-grid"></div>
+    </section>
+
+    <section id="view-start" class="view-panel">
+      <div class="start-shell">
+        <div class="start-hero">
+          <div class="start-copy">
+            <span class="eyebrow">شروع هوشمند</span>
+            <h2>اول با هم آشنا شویم؛ بعد برندت را می‌سازیم.</h2>
+            <p>من مثل یک مشاور کنار تو قدم‌به‌قدم چند سؤال خیلی ساده می‌پرسم. لازم نیست اصطلاحات برندینگ را بلد باشی؛ کافی است درباره خودت و کسب‌وکارت طبیعی جواب بدهی. در پایان، هوش مصنوعی پاسخ‌ها را تحلیل می‌کند و هویت برند را برایت می‌چیند.</p>
+            <div class="start-meta"><span>● کوتاه و ساده</span><span>● یک سؤال در هر مرحله</span><span>● تحلیل نهایی با AI</span></div>
+          </div>
+          <div class="start-orbit"><div class="start-orbit-core">AI</div><span>مشاور برند</span></div>
+        </div>
+
+        <div id="startApiGate" class="start-gate" hidden>
+          <div class="start-gate-icon">!</div>
+          <div>
+            <strong>اول اتصال هوش مصنوعی را کامل کن</strong>
+            <p>برای اینکه سؤال‌های شروع را بپرسم و در پایان پاسخ‌ها را تحلیل کنم، ابتدا API را در «تنظیمات AI» وصل کن. تا قبل از اتصال، هیچ‌یک از سؤال‌ها نمایش داده نمی‌شوند.</p>
+          </div>
+          <button id="btnStartGoGateway" class="btn btn-dark" type="button">اتصال API</button>
+        </div>
+
+        <div id="startWizard" class="start-wizard" hidden>
+          <div class="wizard-top">
+            <div><span class="eyebrow">گفت‌وگوی مشاوره‌ای</span><h3 id="startQuestionTitle">یک سؤال ساده</h3><p id="startQuestionHint">جوابت لازم نیست رسمی یا طولانی باشد.</p></div>
+            <span id="startProgressText" class="progress-badge">۱ از ۸</span>
+          </div>
+          <div class="wizard-progress"><i id="startProgressBar"></i></div>
+          <div class="wizard-question-card">
+            <div class="advisor-avatar">WS</div>
+            <div class="advisor-bubble"><span class="advisor-label">مشاور We Studio</span><p id="startQuestionText"></p><small id="startQuestionExample"></small></div>
+          </div>
+          <div class="start-help-card">
+            <div class="start-help-head"><div><strong>راهنما</strong><span>لازم نیست اصطلاحات برندینگ را بدانی.</span></div><button id="btnStartHelp" class="help-toggle" type="button">توضیح بیشتر</button></div>
+            <p id="startHelpText"></p>
+            <div id="startHelpDetail" class="start-help-detail" hidden>هر پاسخی که به ذهن خودت می‌رسد معتبر است. پیشنهادهای آماده فقط برای سریع‌تر شدن کار هستند و همیشه می‌توانی پاسخ شخصی خودت را تایپ و ویرایش کنی.</div>
+          </div>
+          <div id="startOptions" class="start-options" hidden></div>
+          <label id="startAnswerWrap" class="start-answer-label">پاسخ تو <span>انتخاب آماده یا پاسخ شخصی</span>
+            <textarea id="startAnswer" rows="5" autocomplete="off" placeholder="اینجا خیلی ساده بنویس..."></textarea>
+          </label>
+          <div class="start-input-tools"><span>پاسخ را به زبان خودت بنویس؛ کوتاه یا مفصل فرقی ندارد.</span></div>
+          <div class="wizard-actions">
+            <button id="btnStartBack" class="btn btn-light" type="button">سؤال قبل</button>
+            <div><button id="btnStartNext" class="btn btn-dark" type="button">ادامه</button><button id="btnStartAnalyze" class="btn btn-dark" type="button" hidden>تحلیل پاسخ‌ها و ساخت هویت برند</button></div>
+          </div>
+        </div>
+
+        <div id="startCompleted" class="start-completed" hidden>
+          <div class="completed-icon">✓</div>
+          <span class="eyebrow">شروع کامل شد</span>
+          <h3 id="startCompletedTitle">عالیه، پاسخ‌ها آماده‌اند.</h3>
+          <p>پاسخ‌های تو ذخیره شده و برای ساخت هویت برند استفاده می‌شوند. اگر چیزی تغییر کرده، می‌توانی دوباره از ابتدا شروع کنی.</p>
+          <div class="completed-actions"><button id="btnStartOpenBrand" class="btn btn-dark" type="button">مشاهده هویت برند</button><button id="btnStartRestart" class="btn btn-light" type="button">شروع دوباره</button></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-brand-dna" class="view-panel">
+      <div class="section-head"><div><span class="eyebrow">ساختار هویت برند</span><h3>هویت برند</h3><p>اطلاعات را وارد کن؛ ذخیره‌سازی به‌صورت خودکار انجام می‌شود.</p></div><div class="head-actions"><span id="dnaSaveBadge" class="save-state">✓ ذخیره شده</span><button type="button" id="btnAiGenerateBrandDna" class="btn btn-dark">تولید کامل با AI</button><button type="button" id="btnDeleteBrand" class="btn btn-danger">حذف برند</button></div></div>
+      <form id="brandDnaForm" class="form-stack">
+        <div class="form-section"><div class="section-title"><span>01</span><div><h4>هسته برند</h4><small>تعریف پایه‌ای که تمام خروجی‌های AI از آن پیروی می‌کنند.</small></div></div><div class="form-grid-2">
+          <label>نام برند<input id="dna_name" type="text"></label><label>کهن‌الگو<textarea id="dna_archetype" rows="2"></textarea><button type="button" class="btn-field-ai" data-field="dna_archetype">AI</button></label>
+          <label>ماموریت<textarea id="dna_mission" rows="3"></textarea><button type="button" class="btn-field-ai" data-field="dna_mission">AI</button></label><label>چشم‌انداز<textarea id="dna_vision" rows="3"></textarea><button type="button" class="btn-field-ai" data-field="dna_vision">AI</button></label>
+          <label>ارزش‌های محوری<textarea id="dna_values" rows="3"></textarea><button type="button" class="btn-field-ai" data-field="dna_values">AI</button></label><label>وعده برند<textarea id="dna_promise" rows="3"></textarea><button type="button" class="btn-field-ai" data-field="dna_promise">AI</button></label>
+          <label>جایگاه‌یابی<textarea id="dna_positioning" rows="3"></textarea><button type="button" class="btn-field-ai" data-field="dna_positioning">AI</button></label><label>مزیت رقابتی / USP<textarea id="dna_usp" rows="3"></textarea><button type="button" class="btn-field-ai" data-field="dna_usp">AI</button></label>
+          <label class="span-2">واژگان ممنوعه<textarea id="dna_banned_words" rows="2"></textarea></label>
+        </div></div>
+        <div class="form-section"><div class="section-title"><span>02</span><div><h4>مخاطب هدف</h4><small>داده‌هایی که AI برای تصمیم‌های محتوایی استفاده می‌کند.</small></div></div><div class="form-grid-2"><label>تعریف مخاطب<textarea id="dna_aud_desc" rows="3"></textarea></label><label>دردهای مخاطب<textarea id="dna_aud_pain" rows="3"></textarea></label><label class="span-2">خواسته‌های مخاطب<textarea id="dna_aud_desires" rows="3"></textarea></label></div></div>
+        <div class="form-section"><div class="section-title"><span>03</span><div><h4>Voice و Tone</h4><small>شخصیت ثابت برند را از لحن هر موقعیت جدا نگه دار.</small></div></div><div class="form-grid-2"><label>Voice / شخصیت ثابت<textarea id="dna_voice_traits" rows="3"></textarea></label><label>Tone / لحن موقعیتی<textarea id="dna_tone" rows="3"></textarea></label><label>میزان رسمیت<textarea id="dna_formality" rows="2"></textarea></label><label>واژگان ترجیحی<textarea id="dna_pref_words" rows="2"></textarea></label></div></div>
+        <div class="form-section"><div class="section-title"><span>04</span><div><h4>منشور هویت کاپفرر</h4><small>شش بُعد برای ساختن یک تصویر برند منسجم.</small></div></div><div class="form-grid-2"><label>کالبد<textarea id="dna_kap_physique" rows="2"></textarea></label><label>شخصیت<textarea id="dna_kap_personality" rows="2"></textarea></label><label>فرهنگ<textarea id="dna_kap_culture" rows="2"></textarea></label><label>رابطه<textarea id="dna_kap_relationship" rows="2"></textarea></label><label>بازتاب<textarea id="dna_kap_reflection" rows="2"></textarea></label><label>تصویر ذهنی<textarea id="dna_kap_self_image" rows="2"></textarea></label></div></div>
+        <div class="form-section"><div class="section-title"><span>05</span><div><h4>معماری محتوا</h4><small>ستون‌های محتوایی و اهدافی که موتور تولید باید دنبال کند.</small></div></div><div class="form-grid-2"><label>ستون‌های محتوایی<textarea id="dna_pillars" rows="3"></textarea></label><label>اهداف محتوا<textarea id="dna_goals" rows="3"></textarea></label></div></div>
+      </form>
+    </section>
+
+    <section id="view-instagram" class="view-panel"><div class="section-head"><div><span class="eyebrow">موتور اینستاگرام</span><h3>تولید محتوای اینستاگرام</h3><p>خروجی بر اساس Brand DNA فعال تولید می‌شود.</p></div></div><div class="generator-layout"><div class="panel form-panel"><div class="panel-title"><div><span class="panel-kicker">ورودی</span><h4>مشخصات محتوا</h4></div><span class="soft-icon">◎</span></div><label>موضوع پست<input id="ig_topic" type="text" placeholder="مثلاً: معرفی یک قابلیت جدید محصول"></label><div class="form-grid-2">
+<label>فرمول کپشن<select id="ig_formula"><option>AIDA</option><option>PAS</option><option>Storytelling</option><option>Educational</option></select><small id="igFormulaHelp" class="field-help">AIDA: توجه → علاقه → تمایل → اقدام. برای پست‌های هدفمند و CTA‌محور.</small></label>
+<label>هدف پست<select id="ig_goal"><option>آگاهی از برند</option><option>تعامل</option><option>لید</option><option>فروش</option></select><small id="igGoalHelp" class="field-help">آگاهی از برند: تمرکز روی شناخت، جایگاه و یادآوری برند؛ بدون فشار مستقیم برای خرید.</small></label>
+<label>سبک هوک<select id="ig_hook_style"><option>چالشی</option><option>کنجکاوی‌برانگیز</option><option>آموزشی</option><option>آماری</option></select><small id="igHookHelp" class="field-help">چالشی: با یک باور یا مسئله رایج شروع می‌کند و مخاطب را به فکر کردن وامی‌دارد.</small></label>
+<label>کلمه کلیدی DM<input id="ig_dm_keyword" type="text" placeholder="مثلاً GUIDE"><small class="field-help">یک کلمه کوتاه که مخاطب در دایرکت می‌فرستد تا پیام خودکار مرتبط دریافت کند.</small></label>
+</div>
+<label>کلمات کلیدی الزامی<textarea id="ig_keywords" rows="3"></textarea><small class="field-help">واژه‌ها یا عبارت‌هایی که باید در متن دیده شوند؛ AI آنها را با Voice برند هماهنگ می‌کند.</small></label>
+<div class="engine-help-box"><strong>راهنمای Instagram Engine</strong><p>هر گزینه روی شکل خروجی اثر دارد. انتخاب‌ها فقط «فرمول تولید» هستند؛ هویت، Voice، Tone، ارزش‌ها، جایگاه و واژگان ممنوعه همیشه از Brand DNA فعال می‌آیند.</p><div class="engine-help-list"><span><b>AIDA</b> مسیر توجه تا اقدام</span><span><b>PAS</b> مشکل → تشدید → راه‌حل</span><span><b>Storytelling</b> روایت و تجربه</span><span><b>Educational</b> آموزش و ارزش عملی</span><span><b>آگاهی</b> شناخت برند</span><span><b>تعامل</b> کامنت/ذخیره/مشارکت</span><span><b>لید</b> جمع‌آوری سرنخ</span><span><b>فروش</b> حرکت به سمت خرید</span></div></div><button type="button" id="btnGenerateInstagram" class="btn btn-dark btn-full">تولید محتوای اینستاگرام</button></div><div class="panel output-panel"><div class="panel-title"><div><span class="panel-kicker">خروجی</span><h4>خروجی نهایی</h4></div><div id="igOutputActions" class="head-actions" style="display:none"><button type="button" id="btnCopyIg" class="btn btn-light btn-sm">کپی</button><button type="button" id="btnDownloadIg" class="btn btn-light btn-sm">دانلود</button></div></div><div id="igOutputContainer" class="output-empty"><span>◎</span><p>بعد از تولید، هوک‌ها، کپشن، CTA و پیام DM اینجا نمایش داده می‌شوند.</p></div></div></div></section>
+
+    <section id="view-youtube" class="view-panel"><div class="section-head"><div><span class="eyebrow">موتور یوتیوب</span><h3>تولید توضیحات یوتیوب</h3><p>تایم‌استمپ جعلی ساخته نمی‌شود؛ فقط داده‌ای که وارد کرده‌ای استفاده خواهد شد.</p></div></div><div class="generator-layout"><div class="panel form-panel"><div class="panel-title"><div><span class="panel-kicker">ورودی</span><h4>اطلاعات ویدیو</h4></div><span class="soft-icon">▶</span></div><label>عنوان اصلی ویدیو<input id="yt_title" type="text" placeholder="عنوان ویدیو"></label><label>خلاصه محتوا<textarea id="yt_summary" rows="4"></textarea></label><label>تایم‌استمپ‌های واقعی<textarea id="yt_timestamps" rows="4" placeholder="00:00 مقدمه&#10;02:30 بخش اول"></textarea></label><div class="form-grid-2"><label>کلمات کلیدی<textarea id="yt_keywords" rows="3"></textarea></label><label>هشتگ‌ها<textarea id="yt_hashtags" rows="3"></textarea></label></div><button type="button" id="btnGenerateYoutube" class="btn btn-dark btn-full">تولید توضیحات یوتیوب</button></div><div class="panel output-panel"><div class="panel-title"><div><span class="panel-kicker">خروجی</span><h4>دیسکریپشن آماده انتشار</h4></div><div id="ytOutputActions" class="head-actions" style="display:none"><button type="button" id="btnCopyYt" class="btn btn-light btn-sm">کپی</button><button type="button" id="btnDownloadYt" class="btn btn-light btn-sm">دانلود</button></div></div><div id="ytOutputContainer" class="output-empty"><span>▶</span><p>خروجی سئو، مقدمه، تایم‌استمپ و هشتگ اینجا قرار می‌گیرد.</p></div></div></div></section>
+
+    <section id="view-stories" class="view-panel"><div class="section-head"><div><span class="eyebrow">Story architecture</span><h3>معماری زنجیره استوری</h3><p>اسلاید اول Pattern Interrupt و اسلاید آخر CTA خواهد بود.</p></div></div><div class="generator-layout"><div class="panel form-panel"><div class="panel-title"><div><span class="panel-kicker">ورودی</span><h4>مشخصات سناریو</h4></div><span class="soft-icon">▤</span></div><label>موضوع استوری<input id="story_topic" type="text" placeholder="موضوع زنجیره استوری"></label><div class="form-grid-2"><label>تعداد اسلاید<select id="story_slides"><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option></select></label><label>هدف کمپین<select id="story_goal"><option>تعامل</option><option>آگاهی</option><option>لید</option><option>فروش</option><option>آموزش</option></select></label></div><button type="button" id="btnGenerateStory" class="btn btn-dark btn-full">تولید معماری استوری</button></div><div class="panel output-panel"><div class="panel-title"><div><span class="panel-kicker">خروجی</span><h4>زنجیره اسلایدها</h4></div><div id="storyOutputActions" class="head-actions" style="display:none"><button type="button" id="btnCopyStory" class="btn btn-light btn-sm">کپی</button><button type="button" id="btnDownloadStory" class="btn btn-light btn-sm">دانلود</button></div></div><div id="storyOutputContainer" class="output-empty"><span>▤</span><p>معماری اسلایدها با نقش، هدف، متن، پیشنهاد بصری و تعامل نمایش داده می‌شود.</p></div></div></div></section>
+
+    <section id="view-media" class="view-panel"><div class="section-head"><div><span class="eyebrow">Human review</span><h3>چک‌لیست بازبینی قبل از انتشار</h3><p>AI خروجی را می‌سازد؛ تصمیم نهایی انتشار با بازبینی انسانی است.</p></div><span id="checklistProgressBadge" class="progress-badge">0/8</span></div><div class="checklist-grid"><label class="check-card"><input class="ui-checkbox" type="checkbox"><span class="check-box-visual" aria-hidden="true"></span><span class="check-card-title">هماهنگی کامل با Brand DNA</span><small>هویت و جایگاه برند حفظ شده است.</small></label><label class="check-card"><input class="ui-checkbox" type="checkbox"><span class="check-box-visual" aria-hidden="true"></span><span class="check-card-title">صحت اطلاعات و ادعاها</span><small>اعداد، نقل‌قول‌ها و ادعاها بررسی شده‌اند.</small></label><label class="check-card"><input class="ui-checkbox" type="checkbox"><span class="check-box-visual" aria-hidden="true"></span><span class="check-card-title">لحن و واژگان</span><small>Voice و Tone با موقعیت محتوا هم‌خوان است.</small></label><label class="check-card"><input class="ui-checkbox" type="checkbox"><span class="check-box-visual" aria-hidden="true"></span><span class="check-card-title">CTA و هدف</span><small>دعوت به اقدام با هدف محتوا هم‌راستاست.</small></label><label class="check-card"><input class="ui-checkbox" type="checkbox"><span class="check-box-visual" aria-hidden="true"></span><span class="check-card-title">خوانایی موبایل</span><small>خطوط، فاصله‌ها و طول متن کنترل شده‌اند.</small></label><label class="check-card"><input class="ui-checkbox" type="checkbox"><span class="check-box-visual" aria-hidden="true"></span><span class="check-card-title">تصویر و مدیا</span><small>ابعاد، کیفیت و حق استفاده بررسی شده است.</small></label><label class="check-card"><input class="ui-checkbox" type="checkbox"><span class="check-box-visual" aria-hidden="true"></span><span class="check-card-title">لینک و مقصد</span><small>لینک‌ها و مقصد CTA تست شده‌اند.</small></label><label class="check-card"><input class="ui-checkbox" type="checkbox"><span class="check-box-visual" aria-hidden="true"></span><span class="check-card-title">تأیید نهایی</span><small>محتوا توسط مسئول انتشار تأیید شده است.</small></label></div></section>
+
+    <section id="view-history" class="view-panel"><div class="section-head"><div><span class="eyebrow">خروجی archive</span><h3>تاریخچه خروجی‌ها</h3><p>خروجی‌های برند فعال در حافظه محلی افزونه نگهداری می‌شوند.</p></div><button type="button" id="btnClearHistory" class="btn btn-danger">پاک‌سازی تاریخچه</button></div><div id="historyListContainer" class="history-list"></div></section>
+
+    <section id="view-ai-gateway" class="view-panel"><div class="section-head"><div><span class="eyebrow">AI infrastructure</span><h3>تنظیمات AI Gateway</h3><p>اتصال OpenAI-compatible به Gateway مورد اعتماد افزونه (HTTPS).</p></div></div><div class="gateway-grid"><div class="panel form-panel"><div class="panel-title"><div><span class="panel-kicker">Connection</span><h4>درگاه مدل</h4></div><span class="soft-icon">⚙</span></div><label>حالت اتصال<select id="gw_mode"><option value="direct">اتصال مستقیم</option></select></label><label>Base URL<input id="gw_base_url" type="url"></label><label>API Key<div class="input-with-action"><input id="gw_api_key" type="password"><button id="btnToggleApiKey" type="button">نمایش</button></div></label><label>نام مدل اصلی (اختیاری / سفارشی)<input id="gw_model" type="text"><small class="field-help">اگر سرویس مدل‌ها را برنمی‌گرداند، می‌توانی شناسه مدل را دستی وارد کنی.</small></label><div class="head-actions"><button type="button" id="btnSaveGateway" class="btn btn-dark">ذخیره تنظیمات</button><button type="button" id="btnTestConnection" class="btn btn-light">تست ارتباط API</button></div></div>
+<div class="panel model-panel"><div class="panel-title"><div><span class="panel-kicker">Model catalog</span><h4>انتخاب مدل‌های هوش مصنوعی</h4></div><button id="btnRefreshModels" class="btn btn-light btn-sm" type="button">دریافت فهرست مدل‌ها</button></div><p class="model-help">فهرست به‌صورت زنده از مسیر <code>/models</code> سرویس متصل خوانده می‌شود؛ بنابراین فقط مدل‌هایی که Gateway شما واقعاً ارائه می‌کند قابل انتخاب‌اند. مدل اصلی برای تولید محتوا و مدل مشاوره برای «شروع» به‌صورت جداگانه انتخاب می‌شوند.</p><div class="model-grid"><label>مدل اصلی تولید محتوا<select id="gw_model_select"></select></label><label>مدل مشاوره «شروع»<select id="gw_onboarding_model"></select></label></div><div id="modelCatalogStatus" class="model-status">هنوز فهرست مدل‌ها از سرویس دریافت نشده است.</div></div><div class="panel info-panel"><span class="info-number">01</span><h4>امنیت داده</h4><p>کلید API فقط در حافظه نشست افزونه نگهداری می‌شود و وارد پشتیبان‌گیری یا storage دائمی نمی‌شود.</p><span class="info-number">02</span><h4>پشتیبان‌گیری</h4><p>فقط تنظیمات غیرمحرمانه و داده‌های برند در فایل JSON پشتیبان‌گیری می‌شوند؛ کلید API هرگز صادر یا وارد نمی‌شود.</p><div class="head-actions"><button type="button" id="btnExportData" class="btn btn-light">خروجی پشتیبان</button><label class="btn btn-light file-btn">ورود پشتیبان<input id="importFileInput" type="file" accept="application/json"></label></div></div></div></section>
+  </main>
+</div>
+
+<nav class="mobile-bottom-nav" aria-label="ناوبری موبایل">
+  <button type="button" class="nav-pill-btn active" data-view="dashboard"><span class="mobile-nav-icon">⌂</span><span>خانه</span></button>
+  <button type="button" class="nav-pill-btn" data-view="brand-dna"><span class="mobile-nav-icon">◇</span><span>برند</span></button>
+  <button type="button" class="nav-pill-btn" data-view="instagram"><span class="mobile-nav-icon">◎</span><span>تولید</span></button>
+  <button type="button" class="nav-pill-btn" data-view="history"><span class="mobile-nav-icon">◷</span><span>تاریخچه</span></button>
+  <button class="mobile-more-btn" type="button" id="btnMobileMore"><span class="mobile-nav-icon">•••</span><span>بیشتر</span></button>
+</nav>
+<div id="toastStack" class="toast-stack"></div>
+<div id="fieldAiModal" class="modal-backdrop"><div class="modal"><div class="modal-head"><div><span class="eyebrow">کمک هوش مصنوعی</span><h3>پیشنهاد هوش مصنوعی</h3></div><button type="button" id="btnCloseFieldAiModal" class="icon-btn">×</button></div><div id="fieldAiResultText" class="modal-result"></div><div class="modal-actions"><button type="button" id="btnCancelFieldAi" class="btn btn-light">انصراف</button><button type="button" id="btnApplyFieldAi" class="btn btn-dark" disabled>اعمال پیشنهاد</button></div></div></div>
+<div id="versionsModal" class="modal-backdrop"><div class="modal wide"><div class="modal-head"><div><span class="eyebrow">Snapshots</span><h3>نسخه‌های هویت برند</h3></div><button type="button" id="btnCloseVersionsModal" class="icon-btn">×</button></div><div id="versionsList" class="modal-list"></div></div></div>
+<div id="shortcutsModal" class="modal-backdrop"><div class="modal"><div class="modal-head"><div><span class="eyebrow">میانبرها</span><h3>میانبرها</h3></div><button type="button" id="btnCloseShortcutsModal" class="icon-btn">×</button></div><div class="shortcut-list"><div><kbd>Ctrl / ⌘</kbd><span>+</span><kbd>S</kbd><b>ذخیره + Snapshot</b></div><div><kbd>?</kbd><b>نمایش میانبرها</b></div><div><kbd>Esc</kbd><b>بستن پنجره‌ها</b></div></div></div></div>
+<div id="confirmModal" class="modal-backdrop"><div class="modal"><div class="modal-head"><h3 id="confirmModalTitle">تأیید</h3></div><p id="confirmModalText"></p><div class="modal-actions"><button type="button" id="confirmModalCancel" class="btn btn-light">انصراف</button><button type="button" id="confirmModalOk" class="btn btn-dark">تأیید</button></div></div></div>
+<script type="module" src="js/app.js"></script>
+
+<div id="sectionGuideModal" class="guide-modal" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="sectionGuideTitle">
+  <div class="guide-backdrop" data-guide-close></div>
+  <div class="guide-dialog">
+    <button id="btnCloseSectionGuide" class="guide-close" type="button" aria-label="بستن راهنما">×</button>
+    <div class="guide-kicker">راهنمای We Studio</div>
+    <h3 id="sectionGuideTitle">راهنمای این بخش</h3>
+    <p id="sectionGuideText"></p>
+    <button class="btn btn-dark btn-full" type="button" data-guide-close>متوجه شدم</button>
+  </div>
+</div>
+</body>
+</html>

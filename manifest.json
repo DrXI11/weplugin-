@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "We Studio Enterprise — Brand & Content OS",
+  "version": "3.0.11",
+  "description": "Enterprise Brand & Content Workspace with RTL Persian SaaS dashboard, structured Brand DNA, AI content engines, human review, history, Command Center and persistent Dark Mode with final visual QA and contrast polish.",
+  "action": {
+    "default_title": "اجرای We Studio Enterprise",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": [
+    "storage",
+    "downloads"
+  ],
+  "host_permissions": [
+    "https://api.gapgpt.app/*"
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://api.gapgpt.app;"
+  }
+}
